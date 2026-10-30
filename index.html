@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CaseBloom - Phone Cases Store</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff7fa;
+    color: #333;
+}
+
+/* Navigation */
+header {
+    background: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 15px #0001;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    color: #f05b91;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 12px;
+}
+
+.cart {
+    background: #f05b91;
+    color: white;
+    padding: 10px 17px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Hero */
+.hero {
+    min-height: 450px;
+    padding: 70px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(120deg, #ffd9e7, #e9d9ff);
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #342331;
+}
+
+.hero h1 span {
+    color: #ed5790;
+}
+
+.hero p {
+    margin: 20px 0;
+    color: #665866;
+}
+
+.hero button {
+    padding: 14px 28px;
+    background: #ed5790;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.hero button:hover {
+    background: #c83e76;
+    transform: scale(1.05);
+}
+
+.hero img {
+    width: 300px;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+/* Products */
+.products {
+    padding: 60px 7%;
+    text-align: center;
+}
+
+.products h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.filters {
+    margin-bottom: 30px;
+}
+
+.filters button {
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 25px;
+    background: #ffe0eb;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background: #ed5790;
+    color: white;
+}
+
+.search {
+    padding: 12px;
+    width: 250px;
+    max-width: 100%;
+    border: 1px solid #f3b5cb;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    outline: none;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #0001;
+    transition: .3s;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background: #fff0f5;
+    border-radius: 12px;
+}
+
+.card h3 {
+    margin: 15px 0 8px;
+}
+
+.price {
+    color: #ed5790;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.card button {
+    background: #ed5790;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 25px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #c83e76;
+}
+
+.heart {
+    background: none !important;
+    color: #ed5790 !important;
+    font-size: 20px;
+    padding: 3px !important;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #342331;
+    color: white;
+    margin-top: 40px;
+}
+
+/* Cart */
+#cartBox {
+    display: none;
+    background: white;
+    padding: 25px;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 320px;
+    max-width: calc(100% - 40px);
+    max-height: 75vh;
+    overflow: auto;
+    box-shadow: 0 5px 30px #0003;
+    border-radius: 15px;
+    z-index: 20;
+}
+
+#cartBox h2 {
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.cart-item button {
+    padding: 4px 9px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.close {
+    float: right;
+    border: none;
+    background: #ffe0eb;
+    padding: 7px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media(max-width: 800px) {
+    .product-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero img {
+        width: 220px;
+        margin-top: 30px;
+    }
+
+    nav a {
+        display: none;
+    }
+}
+
+@media(max-width: 400px) {
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CaseBloom ♡</div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#products">Shop</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <div class="cart" onclick="toggleCart()">
+        🛍️ Cart (<span id="count">0</span>)
+    </div>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Make Your Phone<br>
+        <span>Look Beautiful!</span></h1>
+
+        <p>Discover cute, stylish and trendy phone cases.</p>
+
+        <button onclick="document.getElementById('products').scrollIntoView()">
+            Shop Now →
+        </button>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1603313011108-4dba96e6f7e6?w=500"
+         alt="Stylish phone">
+</section>
+
+<section class="products" id="products">
+
+    <h2>Our Collection ♡</h2>
+    <p class="subtitle">Find your favourite phone case!</p>
+
+    <input class="search" id="search"
+           placeholder="Search phone cases..."
+           oninput="displayProducts()">
+
+    <div class="filters">
+        <button onclick="filterProducts('All')">All</button>
+        <button onclick="filterProducts('Cute')">Cute</button>
+        <button onclick="filterProducts('Floral')">Floral</button>
+        <button onclick="filterProducts('Minimal')">Minimal</button>
+    </div>
+
+    <div class="product-container" id="productList"></div>
+
+</section>
+
+<footer id="about">
+    <h2>CaseBloom ♡</h2>
+    <p>Made with love for your phone.</p>
+    <p>© 2026 CaseBloom. All Rights Reserved.</p>
+</footer>
+
+<div id="cartBox">
+    <button class="close" onclick="toggleCart()">✕</button>
+    <h2>My Shopping Cart 🛍️</h2>
+    <div id="cartItems"></div>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <button onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+
+const products = [
+    {
+        name: "Pink Floral Case",
+        price: 499,
+        category: "Floral",
+        image: "https://images.unsplash.com/photo-1603313011108-4dba96e6f7e6?w=400"
+    },
+    {
+        name: "Cute Pink Case",
+        price: 399,
+        category: "Cute",
+        image: "https://images.unsplash.com/photo-1601593346740-925612772716?w=400"
+    },
+    {
+        name: "Aesthetic Case",
+        price: 599,
+        category: "Minimal",
+        image: "https://images.unsplash.com/photo-1603891128711-11b4b03bb138?w=400"
+    },
+    {
+        name: "Flower Design Case",
+        price: 449,
+        category: "Floral",
+        image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400"
+    },
+    {
+        name: "Cute Bear Case",
+        price: 549,
+        category: "Cute",
+        image: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=400"
+    },
+    {
+        name: "Simple Transparent Case",
+        price: 299,
+        category: "Minimal",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"
+    }
+];
+
+let cart = [];
+let category = "All";
+
+function displayProducts() {
+
+    let search = document.getElementById("search")
+        .value.toLowerCase();
+
+    let filtered = products.filter(p =>
+        (category === "All" || p.category === category) &&
+        p.name.toLowerCase().includes(search)
+    );
+
+    let output = "";
+
+    filtered.forEach((p, index) => {
+
+        output += `
+        <div class="card">
+
+            <img src="${p.image}" alt="${p.name}">
+
+            <h3>${p.name}</h3>
+
+            <p class="price">₹${p.price}</p>
+
+            <button class="heart"
+                onclick="this.textContent =
+                this.textContent === '♡' ? '♥' : '♡'">
+                ♡
+            </button>
+
+            <button onclick="addToCart(${index}, '${p.name}')">
+                Add to Cart
+            </button>
+
+        </div>`;
+    });
+
+    document.getElementById("productList").innerHTML =
+        output || "<p>No products found!</p>";
+}
+
+function filterProducts(cat) {
+    category = cat;
+    displayProducts();
+}
+
+function addToCart(index, name) {
+
+    let product = products.find(p => p.name === name);
+
+    let existing = cart.find(p => p.name === name);
+
+    if(existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+
+    alert(name + " added to cart!");
+}
+
+function updateCart() {
+
+    let count = cart.reduce((sum, p) =>
+        sum + p.quantity, 0);
+
+    document.getElementById("count").innerText = count;
+
+    let total = 0;
+    let output = "";
+
+    cart.forEach((p, i) => {
+
+        total += p.price * p.quantity;
+
+        output += `
+        <div class="cart-item">
+            <b>${p.name}</b><br>
+            ₹${p.price} × ${p.quantity}
+
+            <button onclick="changeQuantity(${i}, 1)">+</button>
+            <button onclick="changeQuantity(${i}, -1)">-</button>
+            <button onclick="removeItem(${i})">Remove</button>
+        </div>`;
+    });
+
+    document.getElementById("cartItems").innerHTML =
+        output || "<p>Your cart is empty!</p>";
+
+    document.getElementById("total").innerText = total;
+}
+
+function changeQuantity(index, amount) {
+
+    cart[index].quantity += amount;
+
+    if(cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+
+    updateCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function toggleCart() {
+
+    let box = document.getElementById("cartBox");
+
+    box.style.display =
+        box.style.display === "block" ? "none" : "block";
+}
+
+function checkout() {
+
+    if(cart.length === 0) {
+        alert("Your cart is empty!");
+    } else {
+        alert("Thank you for shopping with CaseBloom! Demo checkout only.");
+    }
+}
+
+displayProducts();
+updateCart();
+
+</script>
+
+</body>
+</html>
