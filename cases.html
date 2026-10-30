@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CaseBloom | Your Phone, Your Style</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: #fff9fc;
+    color: #332635;
+}
+
+/* NAVBAR */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 15px #00000008;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #e75b94;
+}
+
+.logo span { color: #392b43; }
+
+nav a {
+    text-decoration: none;
+    color: #514454;
+    margin: 0 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+nav a:hover { color: #e75b94; }
+
+.cart-btn {
+    border: none;
+    background: #ffe3ee;
+    color: #d84e85;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* HERO SECTION */
+
+.hero {
+    margin: 25px auto;
+    width: 92%;
+    min-height: 480px;
+    border-radius: 30px;
+    background: linear-gradient(120deg,#ffe0eb,#eedfff,#e0f1ff);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 45px;
+    overflow: hidden;
+}
+
+.hero-content { max-width: 520px; }
+
+.hero-content small {
+    color: #d44d86;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.15;
+    margin: 20px 0;
+    letter-spacing: -2px;
+}
+
+.hero h1 span { color: #e75b94; }
+
+.hero p {
+    color: #766777;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    background: #e75b94;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.shop-btn:hover {
+    background: #bb3c73;
+    transform: translateY(-5px);
+}
+
+.hero-image {
+    position: relative;
+    width: 330px;
+    height: 330px;
+    display: grid;
+    place-items: center;
+}
+
+.hero-image img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 10px solid white;
+    box-shadow: 0 20px 50px #b77a9b44;
+    animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-15px) rotate(4deg); }
+}
+
+/* SECTION */
+
+.section {
+    padding: 65px 7%;
+    text-align: center;
+}
+
+.heading {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #938394;
+    margin-bottom: 35px;
+}
+
+/* CATEGORIES */
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.category {
+    padding: 12px 24px;
+    border: 1px solid #f3c9d9;
+    background: white;
+    border-radius: 30px;
+    cursor: pointer;
+    color: #8d5d73;
+    transition: .3s;
+}
+
+.category:hover,
+.category.active {
+    background: #e75b94;
+    color: white;
+}
+
+/* SEARCH */
+
+.search {
+    width: 300px;
+    max-width: 100%;
+    padding: 13px 20px;
+    border: 1px solid #f0c8d9;
+    border-radius: 30px;
+    outline: none;
+    margin-bottom: 35px;
+}
+
+/* PRODUCT GRID */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.product {
+    background: white;
+    border-radius: 22px;
+    padding: 13px;
+    text-align: left;
+    box-shadow: 0 5px 25px #b77a9b10;
+    transition: .35s;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px #b77a9b25;
+}
+
+.product-image {
+    height: 230px;
+    border-radius: 17px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.product:hover .product-image img {
+    transform: scale(1.08);
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #df5b91;
+}
+
+.wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 19px;
+    cursor: pointer;
+    color: #df5b91;
+}
+
+.product-info {
+    padding: 15px 5px 7px;
+}
+
+.product-info h3 { font-size: 15px; }
+
+.product-info p {
+    font-size: 12px;
+    color: #a18f9f;
+    margin: 7px 0;
+}
+
+.price {
+    color: #df548b;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 13px;
+}
+
+.add-btn {
+    background: #ffe4ee;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: #cf4b80;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.add-btn:hover {
+    background: #e75b94;
+    color: white;
+}
+
+/* SPECIAL OFFER */
+
+.offer {
+    margin: 20px 7% 70px;
+    padding: 50px;
+    background: linear-gradient(120deg,#f8c5d9,#e8d6ff);
+    border-radius: 25px;
+    text-align: center;
+}
+
+.offer h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.offer p {
+    color: #765d79;
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #342637;
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+footer h2 {
+    color: #ff9cbd;
+    margin-bottom: 12px;
+}
+
+footer p {
+    color: #d7c5d7;
+    font-size: 13px;
+    margin: 7px;
+}
+
+/* CART DRAWER */
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 370px;
+    max-width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 200;
+    padding: 25px;
+    box-shadow: -5px 0 25px #0002;
+    transition: .4s;
+    overflow-y: auto;
+}
+
+.cart-panel.open { right: 0; }
+
+.cart-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.cart-head button {
+    border: none;
+    background: #ffe3ee;
+    padding: 8px 13px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    gap: 10px;
+}
+
+.cart-item button {
+    padding: 5px 9px;
+    border: none;
+    background: #ffe3ee;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cart-total {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.checkout {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 25px;
+    background: #e75b94;
+    color: white;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+    .products { grid-template-columns: repeat(2,1fr); }
+    .hero h1 { font-size: 42px; }
+}
+
+@media(max-width:600px) {
+    header { padding: 15px 5%; }
+    nav { display: none; }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 20px;
+    }
+
+    .hero h1 { font-size: 38px; }
+
+    .hero-image {
+        width: 240px;
+        height: 240px;
+        margin-top: 20px;
+    }
+
+    .hero-image img {
+        width: 210px;
+        height: 210px;
+    }
+
+    .section { padding: 45px 5%; }
+
+    .heading { font-size: 27px; }
+
+    .products { gap: 12px; }
+
+    .product-image { height: 170px; }
+
+    .product { padding: 8px; }
+
+    .product-info h3 { font-size: 13px; }
+
+    .offer { padding: 35px 15px; margin: 15px 5% 45px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Case<span>Bloom.</span> ♡</div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#offer">Offers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+        🛍️ Bag (<span id="count">0</span>)
+    </button>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+        <small>THE NEW COLLECTION ✨</small>
+
+        <h1>Your Phone.<br>
+        Your Style.<br>
+        <span>Your Story.</span></h1>
+
+        <p>
+            Beautiful phone cases for beautiful personalities.
+            Discover your favourite design and make every moment stylish!
+        </p>
+
+        <button class="shop-btn"
+        onclick="document.getElementById('shop').scrollIntoView()">
+            Explore Collection →
+        </button>
+    </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1603313011108-4dba96e6f7e6?w=600"
+        alt="Phone case collection">
+    </div>
+
+</section>
+
+<!-- SHOP -->
+
+<section class="section" id="shop">
+
+    <h2 class="heading">Find Your Favourite Case ♡</h2>
+
+    <p class="description">
+        Cute designs. Premium looks. Everyday protection.
+    </p>
+
+    <div class="categories">
+        <button class="category active" onclick="filter('All',this)">All</button>
+        <button class="category" onclick="filter('Floral',this)">🌸 Floral</button>
+        <button class="category" onclick="filter('Cute',this)">🎀 Cute</button>
+        <button class="category" onclick="filter('Minimal',this)">✨ Minimal</button>
+        <button class="category" onclick="filter('Aesthetic',this)">💜 Aesthetic</button>
+    </div>
+
+    <input class="search" id="search"
+    placeholder="🔍 Search your favourite case..."
+    oninput="showProducts()">
+
+    <div class="products" id="productList"></div>
+
+</section>
+
+<!-- OFFER -->
+
+<section class="offer" id="offer">
+
+    <h2>Special Love Offer! 💗</h2>
+
+    <p>Get 10% OFF on your first order.</p>
+
+    <button class="shop-btn"
+    onclick="document.getElementById('shop').scrollIntoView()">
+        Shop Now
+    </button>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+    <h2>CaseBloom ♡</h2>
+    <p>Make your phone as beautiful as you are.</p>
+    <p>Instagram | Pinterest | Contact Us</p>
+    <p>© 2026 CaseBloom. All Rights Reserved.</p>
+</footer>
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-head">
+        <h2>My Shopping Bag 🛍️</h2>
+        <button onclick="closeCart()">✕</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+        Total: ₹<span id="total">0</span>
+    </div>
+
+    <button class="checkout" onclick="checkout()">
+        Proceed to Checkout →
+    </button>
+
+</div>
+
+<script>
+
+/* PRODUCT DATA */
+
+const products = [
+
+{
+name:"Pink Daisy Case",
+price:499,
+category:"Floral",
+badge:"BESTSELLER",
+image:"https://images.unsplash.com/photo-1603313011108-4dba96e6f7e6?w=500"
+},
+
+{
+name:"Pastel Dream Case",
+price:599,
+category:"Aesthetic",
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1601593346740-925612772716?w=500"
+},
+
+{
+name:"Minimal White Case",
+price:399,
+category:"Minimal",
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1603891128711-11b4b03bb138?w=500"
+},
+
+{
+name:"Cute Pink Case",
+price:449,
+category:"Cute",
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500"
+},
+
+{
+name:"Flower Garden Case",
+price:549,
+category:"Floral",
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+},
+
+{
+name:"Lavender Aesthetic",
+price:499,
+category:"Aesthetic",
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=500"
+},
+
+{
+name:"Cute Everyday Case",
+price:349,
+category:"Cute",
+badge:"SALE",
+image:"https://images.unsplash.com/photo-1603313011108-4dba96e6f7e6?w=500"
+},
+
+{
+name:"Classic Clear Case",
+price:299,
+category:"Minimal",
+badge:"BEST VALUE",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+}
+
+];
+
+let selectedCategory = "All";
+let cart = [];
+let favourites = [];
+
+/* DISPLAY PRODUCTS */
+
+function showProducts() {
+
+    let search = document.getElementById("search")
+    .value.toLowerCase();
+
+    let filtered = products.filter(p =>
+
+        (selectedCategory === "All" ||
+        p.category === selectedCategory) &&
+
+        p.name.toLowerCase().includes(search)
+
+    );
+
+    let html = "";
+
+    filtered.forEach((p,index) => {
+
+        html += `
+
+        <div class="product">
+
+            <div class="product-image">
+
+                <img src="${p.image}" alt="${p.name}"
+                onerror="this.src='https://placehold.co/400x500/fce0eb/aa5577?text=Phone+Case'">
+
+                <span class="badge">${p.badge}</span>
+
+                <button class="wishlist"
+                onclick="toggleWish('${p.name}',this)">♡</button>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>${p.name}</h3>
+
+                <p>${p.category} Collection</p>
+
+                <div class="product-bottom">
+
+                    <span class="price">₹${p.price}</span>
+
+                    <button class="add-btn"
+                    onclick="addCart('${p.name}')">
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("productList").innerHTML =
+    html || "<p>No matching cases found 💗</p>";
+
+}
+
+/* CATEGORY FILTER */
+
+function filter(category,button) {
+
+    selectedCategory = category;
+
+    document.querySelectorAll(".category").forEach(btn =>
+        btn.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    showProducts();
+
+}
+
+/* WISHLIST */
+
+function toggleWish(name,button) {
+
+    if(favourites.includes(name)) {
+
+        favourites = favourites.filter(x => x !== name);
+        button.innerHTML = "♡";
+
+    } else {
+
+        favourites.push(name);
+        button.innerHTML = "♥";
+
+    }
+
+}
+
+/* ADD TO CART */
+
+function addCart(name) {
+
+    let product = products.find(p => p.name === name);
+
+    let existing = cart.find(p => p.name === name);
+
+    if(existing) {
+        existing.quantity++;
+    } else {
+        cart.push({...product,quantity:1});
+    }
+
+    updateCart();
+
+    alert(name + " added to your bag! 💗");
+
+}
+
+/* UPDATE CART */
+
+function updateCart() {
+
+    let count = cart.reduce((sum,p) =>
+        sum + p.quantity,0);
+
+    document.getElementById("count").innerText = count;
+
+    let total = 0;
+    let html = "";
+
+    cart.forEach((p,index) => {
+
+        total += p.price * p.quantity;
+
+        html += `
+
+        <div class="cart-item">
+
+            <div>
+                <b>${p.name}</b><br>
+                ₹${p.price} × ${p.quantity}
+            </div>
+
+            <div>
+                <button onclick="changeQty(${index},1)">+</button>
+
+                <button onclick="changeQty(${index},-1)">−</button>
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("cartItems").innerHTML =
+    html || "<p>Your bag is empty ♡</p>";
+
+    document.getElementById("total").innerText = total;
+
+}
+
+/* QUANTITY */
+
+function changeQty(index,value) {
+
+    cart[index].quantity += value;
+
+    if(cart[index].quantity <= 0) {
+        cart.splice(index,1);
+    }
+
+    updateCart();
+
+}
+
+/* CART PANEL */
+
+function openCart() {
+
+    document.getElementById("cartPanel")
+    .classList.add("open");
+
+}
+
+function closeCart() {
+
+    document.getElementById("cartPanel")
+    .classList.remove("open");
+
+}
+
+/* CHECKOUT */
+
+function checkout() {
+
+    if(cart.length === 0) {
+
+        alert("Your shopping bag is empty!");
+
+    } else {
+
+        alert("Thank you for shopping with CaseBloom! 💗 Demo checkout only.");
+
+    }
+
+}
+
+showProducts();
+updateCart();
+
+</script>
+
+</body>
+</html>
